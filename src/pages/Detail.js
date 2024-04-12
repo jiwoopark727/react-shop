@@ -9,7 +9,6 @@ function Detail(props){
         return item.id = id;
     })
 
-
     return(
         <div className="container">
             <div className="row">
