@@ -40,10 +40,10 @@ function App() {
         } />
 
 
-        <Route path="/detail" element={ 
+        <Route path="/detail/:id" element={ 
           <div>
           {/* 상세 정보 */}
-          <Detail/>
+          <Detail shoes={shoes} address={address}/>
           </div> 
         } />
 

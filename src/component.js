@@ -16,7 +16,7 @@ function Card(props){
       //대문Navbar
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home">ShoesShop</Navbar.Brand>
+          <Navbar.Brand href="/">ShoesShop</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="#home">NEW</Nav.Link>
             <Nav.Link href="#features">BEST30</Nav.Link>
