@@ -2,7 +2,6 @@ import {useParams} from 'react-router-dom';
 import data from '../data.js';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { Alert } from 'react-bootstrap';
 
 function Detail(props){
     let {id} = useParams();
@@ -30,7 +29,7 @@ function Detail(props){
 
     useEffect(()=>{
         if(isNaN(num)==true){
-            alert('그러지마세요')
+            alert('숫자만 입력하세요')
         }
     }, [num])
 
