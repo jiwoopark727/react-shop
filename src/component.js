@@ -4,7 +4,9 @@ import { Routes, Route, Link } from 'react-router-dom'
 function Card(props){
     return(
       <Col className='col-md-4'>
-        <img src={props.address[props.i]} width="80%"/>
+        <a href={"/detail/"+props.i}>
+          <img src={props.address[props.i]} width="80%"/>
+        </a>
         <h4>{props.shoes[props.i].title}</h4>
         <p>{props.shoes[props.i].price}</p>
       </Col>
