@@ -1,10 +1,8 @@
 import {useParams} from 'react-router-dom';
 import data from '../data.js';
 import styled from 'styled-components';
-import { useEffect } from 'react';
-import jQuery from "jquery";
-window.$ = window.jQuery = jQuery;
-
+import { useEffect, useState } from 'react';
+import { Alert } from 'react-bootstrap';
 
 function Detail(props){
     let {id} = useParams();
@@ -18,18 +16,33 @@ function Detail(props){
         color : black;
         padding : 10px;
     `
-    useEffect(()=>{
-        setTimeout(()=>{ document.querySelector('.alert').style.cssText = "display:none"; }, 2000)
-    })
 
-    //jsp에서 타이머 하는 방법
-    //setTimeout(()=>{  실행할코드   }, 1000)
+    let [alert1, setAlert] = useState(true);
+    useEffect(()=>{
+        let a = setTimeout(()=>{ setAlert(false); }, 2000);
+
+        return()=>{
+            clearTimeout(a);
+        }
+    },[])
+
+    let [num, setNum] = useState('');
+
+    useEffect(()=>{
+        if(isNaN(num)==true){
+            alert('그러지마세요')
+        }
+    }, [num])
+
 
     return(
         <div className="container">
-            <div className='alert alert-warning'>
+            {
+                alert1 == true ?         
+                <div className='alert alert-warning'>
                 2초이내 구매시 할인
-            </div>
+                </div> : null
+            }
             <YellowBtn>하이요</YellowBtn>
             <div className="row">
                 <div className="col-md-6">
@@ -40,10 +53,15 @@ function Detail(props){
                     <p>{props.shoes[result.id].content}</p>
                     <p>{props.shoes[result.id].price}원</p>
                     <button className="btn btn-danger">주문하기</button> 
+                    {/* 숫자 아닌걸 입력하면 경고창 띄우기 */}
+                    <p className='num' style={{margin: 20}}>
+                        <input onChange={(e)=>{ setNum(e.target.value) }}></input>
+                    </p>
                 </div>
             </div>
         </div> 
     )
 }
+
 
 export default Detail;
