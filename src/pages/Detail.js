@@ -1,5 +1,7 @@
 import {useParams} from 'react-router-dom';
 import data from '../data.js';
+import styled from 'styled-components';
+
 
 function Detail(props){
     let {id} = useParams();
@@ -8,9 +10,15 @@ function Detail(props){
     let result = data.find(function(item){
         return item.id = id;
     })
+    let YellowBtn = styled.button`
+        background : yellow;
+        color : black;
+        padding : 10px;
+    `
 
     return(
         <div className="container">
+            <YellowBtn>하이요</YellowBtn>
             <div className="row">
                 <div className="col-md-6">
                     <img className='haha' src={props.address[result.id]} width="100%" />
