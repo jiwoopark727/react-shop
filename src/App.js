@@ -1,5 +1,4 @@
-import {Button, Container, Nav, Navbar, Row, Col} from 'react-bootstrap';
-import {Card, Front, Display} from './component.js';
+import {Front, Display} from './component.js';
 import data from './data.js';
 import Detail from './pages/Detail.js';
 import About from './pages/About.js';
@@ -7,16 +6,16 @@ import EventPage from './pages/EventPage.js';
 import axios from 'axios';
 
 
-import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
-import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 
 
 function App() {
 
   let [shoes, setShoes] = useState(data);
   let navigate = useNavigate();
+  let [click, setClick] = useState(1);
 
   return (
     <div className="App">
@@ -62,19 +61,43 @@ function App() {
         <Route path="*" element={ <div>없는페이지임</div> } />
       </Routes>
 
+
+
       <button onClick={()=>{
-      axios.get('https://codingapple1.github.io/shop/data2.json').then((결과)=>{
+        setClick(click+1);
+        console.log(click);
+
+        if(click==1){
+          axios.get('https://codingapple1.github.io/shop/data2.json').then((결과)=>{
+            let copy = [...shoes, ...결과.data];
+            // 결과.data.map((a,i)=>{
+            //   copy.push(결과.data[i]);
+            // })
+            setShoes(copy);
+          })
+          .catch(()=>{
+            console.log('실패함')
+          })
+        }else if(click == 2){
+          axios.get('https://codingapple1.github.io/shop/data3.json').then((결과)=>{
           let copy = [...shoes, ...결과.data];
           // 결과.data.map((a,i)=>{
           //   copy.push(결과.data[i]);
           // })
-          setShoes(copy);
-        })
-        .catch(()=>{
-          console.log('실패함')
-        })
+            setShoes(copy);
+          })
+          .catch(()=>{
+            console.log('실패함')
+          })
+        }
+        else{
+          alert("상품이 더 없음!");
+        }
+
       }}>더보기버튼</button>
       
+
+
       <button onClick={()=>{
           console.log(shoes);
         }

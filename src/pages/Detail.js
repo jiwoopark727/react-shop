@@ -12,6 +12,7 @@ function Detail(props){
     })
     {
         console.log(result.id);
+        console.log(props.shoes);
     }
 
     let YellowBtn = styled.button`
@@ -46,7 +47,9 @@ function Detail(props){
                 2초이내 구매시 할인
                 </div> : null
             }
+            
             <YellowBtn>하이요</YellowBtn>
+
             <div className="row">
                 <div className="col-md-6">
                     <img src={"https://codingapple1.github.io/shop/shoes"+ (Number(result.id)+1) +".jpg"} width="100%" />
