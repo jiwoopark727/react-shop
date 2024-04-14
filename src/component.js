@@ -5,10 +5,10 @@ function Card(props){
     return(
       <Col className='col-md-4'>
         <a href={"/detail/"+props.i}>
-          <img src={props.address[props.i]} width="80%"/>
+          <img src={'https://codingapple1.github.io/shop/shoes' + (props.i+1) + '.jpg'} width="80%"/>
         </a>
         <h4>{props.shoes[props.i].title}</h4>
-        <p>{props.shoes[props.i].price}</p>
+        <p>{props.shoes[props.i].price}원</p>
       </Col>
     )
   }
@@ -37,7 +37,6 @@ function Card(props){
   
   function Display(props){
     let shoes = props.shoes;
-    let address = props.address;
     return(
       //상품진열
       <Container>
@@ -45,8 +44,7 @@ function Card(props){
           {
             props.shoes.map(function(a,i){
               return(
-                <Card shoes={shoes} a={a} i={i}
-                      address={address} key={i}>
+                <Card shoes={shoes} a={a} i={i} key={i}>
                 </Card>
               )
             })

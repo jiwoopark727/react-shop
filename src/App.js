@@ -1,7 +1,4 @@
 import {Button, Container, Nav, Navbar, Row, Col} from 'react-bootstrap';
-import sh1 from './img/shoes1.jpg'
-import sh2 from './img/shoes2.jpg'
-import sh3 from './img/shoes3.jpg'
 import {Card, Front, Display} from './component.js';
 import data from './data.js';
 import Detail from './pages/Detail.js';
@@ -19,7 +16,6 @@ import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 function App() {
 
   let [shoes, setShoes] = useState(data);
-  let [address] = useState([sh1, sh2, sh3])
   let navigate = useNavigate();
 
   return (
@@ -36,7 +32,7 @@ function App() {
           <div className='main-bg'></div>
           
           {/* 상품 진열 */}
-          <Display shoes={shoes} address={address}/>
+          <Display shoes={shoes}/>
           </div> 
         } />
 
@@ -44,7 +40,7 @@ function App() {
         <Route path="/detail/:id" element={ 
           <div>
           {/* 상세 정보 */}
-          <Detail shoes={shoes} address={address}/>
+          <Detail shoes={shoes}/>
           </div> 
         } />
 
@@ -78,7 +74,11 @@ function App() {
           console.log('실패함')
         })
       }}>더보기버튼</button>
-
+      
+      <button onClick={()=>{
+          console.log(shoes);
+        }
+      }>shoes항목보기</button>
 
       <p>
         <button onClick={()=>{ navigate('/detail')}}>디테일이동버튼</button>
@@ -92,4 +92,3 @@ function App() {
 }
 
 export default App;
-
