@@ -18,6 +18,7 @@ function Detail(props){
     //     console.log(props.shoes[result.id].price);
     // }
 
+
     let YellowBtn = styled.button`
         background : yellow;
         color : black;
@@ -60,7 +61,7 @@ function Detail(props){
                     <h4 className="pt-5">{props.shoes[result.id]?.title}</h4>
                     <p>{props.shoes[result.id]?.content}</p>
                     <p>{props.shoes[result.id]?.price}원</p>
-                    <button className="btn btn-danger">주문하기</button> 
+                    <button className="btn btn-danger">주문하기</button>
                     {/* 숫자 아닌걸 입력하면 경고창 띄우기 */}
                     <p className='num' style={{margin: 20}}>
                         <input onChange={(e)=>{ setNum(e.target.value) }}></input>
