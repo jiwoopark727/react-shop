@@ -15,7 +15,7 @@ function App() {
 
   let [shoes, setShoes] = useState(data);
   let navigate = useNavigate();
-  let [click, setClick] = useState(1);
+  let [click, setClick] = useState(0);
 
   return (
     <div className="App">
@@ -65,34 +65,18 @@ function App() {
 
       <button onClick={()=>{
         setClick(click+1);
-        console.log(click);
 
-        if(click==1){
-          axios.get('https://codingapple1.github.io/shop/data2.json').then((결과)=>{
-            let copy = [...shoes, ...결과.data];
-            // 결과.data.map((a,i)=>{
-            //   copy.push(결과.data[i]);
-            // })
-            setShoes(copy);
-          })
-          .catch(()=>{
-            console.log('실패함')
-          })
-        }else if(click == 2){
-          axios.get('https://codingapple1.github.io/shop/data3.json').then((결과)=>{
+        axios.get('https://codingapple1.github.io/shop/data' + (click+2) + '.json').then((결과)=>{
           let copy = [...shoes, ...결과.data];
           // 결과.data.map((a,i)=>{
           //   copy.push(결과.data[i]);
           // })
-            setShoes(copy);
-          })
-          .catch(()=>{
-            console.log('실패함')
-          })
-        }
-        else{
-          alert("상품이 더 없음!");
-        }
+          setShoes(copy);
+        })
+        .catch(()=>{
+          console.log('실패함')
+          alert("상품없음");
+        })
 
       }}>더보기버튼</button>
       

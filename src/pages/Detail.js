@@ -8,12 +8,15 @@ function Detail(props){
     //datail/:id 디테일 뒤에 입력한 id와 일치하는 id를 가진 제품 object를 찾아서 그 제품의 id를 
     //아래 return문에서 사용해서 상세페이지 띄움
     let result = props.shoes.find(function(item){
-        return item.id = id;
+        return item.id == id;
     })
-    {
-        console.log(result.id);
-        console.log(props.shoes);
-    }
+    // {
+    //     console.log(result);
+    //     console.log(result.id);
+    //     console.log(props.shoes[result.id].title);
+    //     console.log(props.shoes[result.id].content);
+    //     console.log(props.shoes[result.id].price);
+    // }
 
     let YellowBtn = styled.button`
         background : yellow;
@@ -37,7 +40,6 @@ function Detail(props){
             alert('숫자만 입력하세요')
         }
     }, [num])
-
 
     return(
         <div className="container">
