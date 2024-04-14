@@ -68,10 +68,10 @@ function App() {
 
       <button onClick={()=>{
       axios.get('https://codingapple1.github.io/shop/data2.json').then((결과)=>{
-          let copy = [...shoes];
-          결과.data.map((a,i)=>{
-            copy.push(결과.data[i]);
-          })
+          let copy = [...shoes, ...결과.data];
+          // 결과.data.map((a,i)=>{
+          //   copy.push(결과.data[i]);
+          // })
           setShoes(copy);
         })
         .catch(()=>{
