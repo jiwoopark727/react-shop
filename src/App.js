@@ -7,6 +7,7 @@ import data from './data.js';
 import Detail from './pages/Detail.js';
 import About from './pages/About.js';
 import EventPage from './pages/EventPage.js';
+import axios from 'axios';
 
 
 import logo from './logo.svg';
@@ -17,7 +18,7 @@ import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 
 function App() {
 
-  let [shoes] = useState(data);
+  let [shoes, setShoes] = useState(data);
   let [address] = useState([sh1, sh2, sh3])
   let navigate = useNavigate();
 
@@ -65,10 +66,26 @@ function App() {
         <Route path="*" element={ <div>없는페이지임</div> } />
       </Routes>
 
-      <button onClick={()=>{ navigate('/detail')}}>디테일이동버튼</button>
-      <button onClick={()=>{ navigate('/')}}>홈이동버튼</button>
-      <button onClick={()=>{ navigate('/event/one')}}>이벤트1이동버튼</button>
-      <button onClick={()=>{ navigate('/event/two')}}>이벤트2이동버튼</button>
+      <button onClick={()=>{
+      axios.get('https://codingapple1.github.io/shop/data2.json').then((결과)=>{
+          let copy = [...shoes];
+          결과.data.map((a,i)=>{
+            copy.push(결과.data[i]);
+          })
+          setShoes(copy);
+        })
+        .catch(()=>{
+          console.log('실패함')
+        })
+      }}>더보기버튼</button>
+
+
+      <p>
+        <button onClick={()=>{ navigate('/detail')}}>디테일이동버튼</button>
+        <button onClick={()=>{ navigate('/')}}>홈이동버튼</button>
+        <button onClick={()=>{ navigate('/event/one')}}>이벤트1이동버튼</button>
+        <button onClick={()=>{ navigate('/event/two')}}>이벤트2이동버튼</button>
+      </p>
 
     </div>
   );
