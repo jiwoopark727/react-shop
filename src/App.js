@@ -16,6 +16,7 @@ function App() {
   let [shoes, setShoes] = useState(data);
   let navigate = useNavigate();
   let [click, setClick] = useState(0);
+  let [loading,setLoading] = useState(false);
 
   return (
     <div className="App">
@@ -57,14 +58,20 @@ function App() {
               <p>생일기념 쿠폰받기</p>
           } />
         </Route>
-
         <Route path="*" element={ <div>없는페이지임</div> } />
       </Routes>
 
-
+      {
+        loading == true ? 
+        <div>
+          <h4>로딩중...😓</h4>
+        </div> : null
+      }
 
       <button onClick={()=>{
         setClick(click+1);
+
+        setLoading(true);
 
         axios.get('https://codingapple1.github.io/shop/data' + (click+2) + '.json').then((결과)=>{
           let copy = [...shoes, ...결과.data];
@@ -72,20 +79,20 @@ function App() {
           //   copy.push(결과.data[i]);
           // })
           setShoes(copy);
+          setLoading(false);
         })
         .catch(()=>{
-          console.log('실패함')
+          setLoading(false);
           alert("상품없음");
         })
-
       }}>더보기버튼</button>
-      
-
+    
 
       <button onClick={()=>{
           console.log(shoes);
         }
       }>shoes항목보기</button>
+
 
       <p>
         <button onClick={()=>{ navigate('/detail')}}>디테일이동버튼</button>
