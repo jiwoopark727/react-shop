@@ -40,7 +40,10 @@ function App() {
 
 
         <Route path="/detail/:id" element={ 
-          <DetailContent shoes={shoes}/>
+          <div>
+            {/* 상세 정보 */}
+            <Detail shoes={shoes}/>
+          </div> 
         } />
 
 
@@ -135,27 +138,6 @@ function TabContent(props){
     <div className={'start ' + fade}>
       {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][props.tab]}
     </div>
-  )
-}
-
-function DetailContent(props){
-  let shoes = props.shoes;
-  let [fade2, setFade2] = useState('');
-
-  useEffect(()=>{
-    let a = setTimeout(()=>{ setFade2('end') })
-
-    return()=>{
-      setTimeout(a);
-      setFade2('');
-    }
-  },[])
-
-  return(
-    <div className={'start '+ fade2}>
-      {/* 상세 정보 */}
-      <Detail shoes={shoes}/>
-    </div> 
   )
 }
 

@@ -10,13 +10,9 @@ function Detail(props){
     let result = props.shoes.find(function(item){
         return item.id == id;
     })
-    // {
-    //     console.log(result);
-    //     console.log(result.id);
-    //     console.log(props.shoes[result.id].title);
-    //     console.log(props.shoes[result.id].content);
-    //     console.log(props.shoes[result.id].price);
-    // }
+    let [alert1, setAlert] = useState(true);
+    let [num, setNum] = useState('');
+    let [fade2, setFade2] = useState('');
 
 
     let YellowBtn = styled.button`
@@ -25,7 +21,6 @@ function Detail(props){
         padding : 10px;
     `
 
-    let [alert1, setAlert] = useState(true);
     useEffect(()=>{
         let a = setTimeout(()=>{ setAlert(false); }, 2000);
 
@@ -34,7 +29,6 @@ function Detail(props){
         }
     },[])
 
-    let [num, setNum] = useState('');
 
     useEffect(()=>{
         if(isNaN(num)==true){
@@ -42,8 +36,19 @@ function Detail(props){
         }
     }, [num])
 
+
+    useEffect(()=>{
+      let a = setTimeout(()=>{ setFade2('end') })
+  
+      return()=>{
+        setTimeout(a);
+        setFade2('');
+      }
+    },[])
+
+
     return(
-        <div className="container">
+        <div className={"container start " + fade2}>
             {
                 alert1 == true ?         
                 <div className='alert alert-warning'>
