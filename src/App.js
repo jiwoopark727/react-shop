@@ -18,7 +18,7 @@ function App() {
   let navigate = useNavigate();
   let [click, setClick] = useState(0);
   let [loading,setLoading] = useState(false);
-  let [tab, setTab] = useState(1);
+  let [tab, setTab] = useState(0);
 
   return (
     <div className="App">
@@ -40,10 +40,7 @@ function App() {
 
 
         <Route path="/detail/:id" element={ 
-          <div>
-          {/* 상세 정보 */}
-          <Detail shoes={shoes}/>
-          </div> 
+          <DetailContent shoes={shoes}/>
         } />
 
 
@@ -138,6 +135,27 @@ function TabContent(props){
     <div className={'start ' + fade}>
       {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][props.tab]}
     </div>
+  )
+}
+
+function DetailContent(props){
+  let shoes = props.shoes;
+  let [fade2, setFade2] = useState('');
+
+  useEffect(()=>{
+    let a = setTimeout(()=>{ setFade2('end') })
+
+    return()=>{
+      setTimeout(a);
+      setFade2('');
+    }
+  },[])
+
+  return(
+    <div className={'start '+ fade2}>
+      {/* 상세 정보 */}
+      <Detail shoes={shoes}/>
+    </div> 
   )
 }
 
