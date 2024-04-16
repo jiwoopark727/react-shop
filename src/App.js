@@ -4,11 +4,12 @@ import Detail from './pages/Detail.js';
 import About from './pages/About.js';
 import EventPage from './pages/EventPage.js';
 import axios from 'axios';
-
+import { Nav } from 'react-bootstrap';
 
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom'
+import { tab } from '@testing-library/user-event/dist/tab.js';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
   let navigate = useNavigate();
   let [click, setClick] = useState(0);
   let [loading,setLoading] = useState(false);
+  let [tab, setTab] = useState(1);
 
   return (
     <div className="App">
@@ -101,8 +103,42 @@ function App() {
         <button onClick={()=>{ navigate('/event/two')}}>이벤트2이동버튼</button>
       </p>
 
+      <Nav variant="tabs"  defaultActiveKey="link0">
+        <Nav.Item>
+          <Nav.Link onClick={()=> setTab(0) } eventKey="link0">버튼0</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link onClick={()=> setTab(1) } eventKey="link1">버튼1</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link onClick={()=> setTab(2) } eventKey="link2">버튼2</Nav.Link>
+        </Nav.Item>
+      </Nav>
+
+      <TabContent tab={tab}/>
+
     </div>
   );
+}
+
+function TabContent(props){
+  let [fade, setFade] = useState('')
+
+  useEffect(()=>{
+    let a = setTimeout(()=>{setFade('end');}, 10)
+
+    return()=>{
+      clearTimeout(a);
+      setFade('');
+    }
+  },[props.tab])
+
+
+  return (
+    <div className={'start ' + fade}>
+      {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][props.tab]}
+    </div>
+  )
 }
 
 export default App;
