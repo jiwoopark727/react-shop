@@ -15,8 +15,6 @@ function Detail(props){
     let [num, setNum] = useState('');
     let [fade2, setFade2] = useState('');
     let [tab, setTab] = useState(0);
-    let shoes = props.shoes;
-
 
 
     let YellowBtn = styled.button`
@@ -92,7 +90,7 @@ function Detail(props){
                 </Nav.Item>
             </Nav>
 
-            <TabContent tab={tab} shoes={shoes}/>
+            <TabContent tab={tab} shoes={props.shoes}/>
             
 
         </div> 
@@ -101,8 +99,6 @@ function Detail(props){
 
 function TabContent(props){
     let [fade, setFade] = useState('')
-    let shoes = props.shoes;
-    let tab = props.tab;
   
     useEffect(()=>{
       let a = setTimeout(()=>{setFade('end');}, 100)
@@ -117,20 +113,20 @@ function TabContent(props){
     return (
       <div className={'start ' + fade}>
         {[  <div>
-                <p>{shoes[tab]?.title}</p>
-                <p>{shoes[tab]?.content}</p>
-                <p>{shoes[tab]?.price}</p>
+                <p>{props.shoes[props.tab]?.title}</p>
+                <p>{props.shoes[props.tab]?.content}</p>
+                <p>{props.shoes[props.tab]?.price}</p>
             </div>,
             <div>
-                <p>{shoes[tab]?.title}</p>
-                <p>{shoes[tab]?.content}</p>
-                <p>{shoes[tab]?.price}</p>
+                <p>{props.shoes[props.tab]?.title}</p>
+                <p>{props.shoes[props.tab]?.content}</p>
+                <p>{props.shoes[props.tab]?.price}</p>
             </div>,
             <div>
-                <p>{shoes[tab]?.title}</p>
-                <p>{shoes[tab]?.content}</p>
-                <p>{shoes[tab]?.price}</p>
-            </div>][tab]}
+                <p>{props.shoes[props.tab]?.title}</p>
+                <p>{props.shoes[props.tab]?.content}</p>
+                <p>{props.shoes[props.tab]?.price}</p>
+            </div>][props.tab]}
       </div>
     )
   }
