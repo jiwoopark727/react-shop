@@ -9,9 +9,6 @@ import './App.css';
 import { useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
-export let Context1 = React.createContext();
-
-
 
 function App() {
 
@@ -19,7 +16,6 @@ function App() {
   let navigate = useNavigate();
   let [click, setClick] = useState(0);
   let [loading,setLoading] = useState(false);
-  let [재고, 재고변경] = useState([10,11,12]);
 
 
   return (
@@ -77,10 +73,8 @@ function App() {
 
         <Route path="/detail/:id" element={ 
           <div>
-            <Context1.Provider value={ {재고, shoes} }>
-              {/* 상세 정보 */}
-              <Detail shoes={shoes}/>
-            </Context1.Provider>
+            {/* 상세 정보 */}
+            <Detail shoes={shoes}/>
           </div> 
         } />
 
