@@ -2,6 +2,7 @@ import {useParams} from 'react-router-dom';
 import data from '../data.js';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
+import { Nav } from 'react-bootstrap';
 
 function Detail(props){
     let {id} = useParams();
@@ -13,6 +14,9 @@ function Detail(props){
     let [alert1, setAlert] = useState(true);
     let [num, setNum] = useState('');
     let [fade2, setFade2] = useState('');
+    let [tab, setTab] = useState(0);
+    let shoes = props.shoes;
+
 
 
     let YellowBtn = styled.button`
@@ -72,10 +76,63 @@ function Detail(props){
                         <input onChange={(e)=>{ setNum(e.target.value) }}></input>
                     </p>
                 </div>
+                
             </div>
+
+
+            <Nav variant="tabs"  defaultActiveKey="link0">
+                <Nav.Item>
+                    <Nav.Link onClick={()=> setTab(0) } eventKey="link0">버튼0</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link onClick={()=> setTab(1) } eventKey="link1">버튼1</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link onClick={()=> setTab(2) } eventKey="link2">버튼2</Nav.Link>
+                </Nav.Item>
+            </Nav>
+
+            <TabContent tab={tab} shoes={shoes}/>
+            
+
         </div> 
     )
 }
 
+function TabContent(props){
+    let [fade, setFade] = useState('')
+    let shoes = props.shoes;
+    let tab = props.tab;
+  
+    useEffect(()=>{
+      let a = setTimeout(()=>{setFade('end');}, 100)
+  
+      return()=>{
+        clearTimeout(a);
+        setFade('');
+      }
+    },[props.tab])
+  
+  
+    return (
+      <div className={'start ' + fade}>
+        {[  <div>
+                <p>{shoes[tab]?.title}</p>
+                <p>{shoes[tab]?.content}</p>
+                <p>{shoes[tab]?.price}</p>
+            </div>,
+            <div>
+                <p>{shoes[tab]?.title}</p>
+                <p>{shoes[tab]?.content}</p>
+                <p>{shoes[tab]?.price}</p>
+            </div>,
+            <div>
+                <p>{shoes[tab]?.title}</p>
+                <p>{shoes[tab]?.content}</p>
+                <p>{shoes[tab]?.price}</p>
+            </div>][tab]}
+      </div>
+    )
+  }
 
 export default Detail;
