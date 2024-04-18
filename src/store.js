@@ -6,10 +6,14 @@ let user = createSlice({
   reducers : {
     changeName(state){
       state.name = 'park'
+    },
+    changeAge(state){
+      state.age+=1
     }
   }
 })
-export let { changeName } = user.actions
+export let { changeName, changeAge } = user.actions
+
 
 let cart = createSlice({
   name : 'cart',
