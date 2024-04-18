@@ -4,6 +4,7 @@ import Detail from './pages/Detail.js';
 import About from './pages/About.js';
 import EventPage from './pages/EventPage.js';
 import axios from 'axios';
+import Cart from './pages/Cart.js';
 
 import './App.css';
 import { useState } from 'react';
@@ -55,10 +56,10 @@ function App() {
           }>더보기버튼</button>
         
 
-      <button onClick={()=>{
-          console.log(shoes);
-        }
-      }>shoes항목보기</button>
+        <button onClick={()=>{
+            console.log(shoes);
+          }
+        }>shoes항목보기</button>
 
             <p>
               <button onClick={()=>{ navigate('/detail')}}>디테일이동버튼</button>
@@ -93,10 +94,12 @@ function App() {
           } />
         </Route>
         <Route path="*" element={ <div>없는페이지임</div> } />
+
+        <Route path="/cart" element={ <Cart/> }/>
       </Routes>
 
       {
-        loading == true ? 
+        loading === true ? 
         <div>
           <h4>로딩중...😓</h4>
         </div> : null
