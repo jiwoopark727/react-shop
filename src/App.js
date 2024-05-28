@@ -96,6 +96,7 @@ function App() {
         <Route path="*" element={ <div>없는페이지임</div> } />
 
         <Route path="/cart" element={ <Cart/> }/>
+        
       </Routes>
 
       {

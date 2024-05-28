@@ -7,9 +7,9 @@ let user = createSlice({
     changeName(state){
       state.name = 'park'
     },
-    changeAge(state, a){
-      state.age+=a.payload
-    }
+    changeAge(state, action){
+      state.age+=action.payload
+    } 
   }
 })
 export let { changeName, changeAge } = user.actions
@@ -22,12 +22,18 @@ let cart = createSlice({
     {id : 2, name : 'Grey Yordan', count : 1}
   ],
   reducers : {
-    changCount(state){
-      return state[0].count = 3
+    changeCount(state, action){
+      const item = state.find(item => item.id === action.payload)
+      if (item) {
+        item.count++
+      }
     }
   }
 })
 export let { changeCount } = cart.actions
+
+
+
 
 export default configureStore({
   reducer: { 
