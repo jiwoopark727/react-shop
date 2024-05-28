@@ -1,19 +1,5 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
-
-let user = createSlice({
-  name : 'user',
-  initialState : {name : 'kim', age : 20},
-  reducers : {
-    changeName(state){
-      state.name = 'park'
-    },
-    changeAge(state, action){
-      state.age+=action.payload
-    } 
-  }
-})
-export let { changeName, changeAge } = user.actions
-
+import user from './store/userSlice.js'
 
 let cart = createSlice({
   name : 'cart',
@@ -23,9 +9,9 @@ let cart = createSlice({
   ],
   reducers : {
     changeCount(state, action){
-      const item = state.find(item => item.id === action.payload)
-      if (item) {
-        item.count++
+      const product = state.find(state => state.id === action.payload)
+      if(product){
+        product.count++
       }
     }
   }
