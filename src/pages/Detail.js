@@ -1,8 +1,10 @@
 import {useParams} from 'react-router-dom';
-import data from '../data.js';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { Nav } from 'react-bootstrap';
+import { useDispatch } from "react-redux"
+import { addProduct, printProduct } from "./../store.js"
+import { Routes, Route, useNavigate } from 'react-router-dom'
 
 function Detail(props){
     let {id} = useParams();
@@ -48,6 +50,9 @@ function Detail(props){
       }
     },[])
 
+    let dispatch = useDispatch();
+    let navigate = useNavigate();
+
 
     return(
         <div className={"container start " + fade2}>
@@ -68,7 +73,13 @@ function Detail(props){
                     <h4 className="pt-5">{props.shoes[result.id]?.title}</h4>
                     <p>{props.shoes[result.id]?.content}</p>
                     <p>{props.shoes[result.id]?.price}원</p>
-                    <button className="btn btn-danger">주문하기</button>
+                    <button className="btn btn-danger" onClick={()=>{
+                        dispatch(addProduct({id:result.id, name:result.title, count:1}))
+                        console.log(result.id)
+                        console.log(result.title)
+                        dispatch(printProduct())
+                    }}>주문하기</button>
+                    <button onClick={()=>{   navigate('/cart')   }}>장바구니로 이동하기</button>
                     {/* 숫자 아닌걸 입력하면 경고창 띄우기 */}
                     <p className='num' style={{margin: 20}}>
                         <input onChange={(e)=>{ setNum(e.target.value) }}></input>

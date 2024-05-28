@@ -13,10 +13,16 @@ let cart = createSlice({
       if(product){
         product.count++
       }
+    },
+    addProduct(state, action){
+      state.push(action.payload)
+    },
+    printProduct(state){
+      console.log(state[0]);
     }
   }
 })
-export let { changeCount } = cart.actions
+export let { changeCount, addProduct, printProduct } = cart.actions
 
 
 
