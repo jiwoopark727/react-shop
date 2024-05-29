@@ -1,5 +1,5 @@
 import {Button, Container, Nav, Navbar, Row, Col} from 'react-bootstrap';
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route, Link, useNavigate } from 'react-router-dom'
 
 function Card(props){
     return(
@@ -14,6 +14,7 @@ function Card(props){
   }
   
   function Front(props){
+    let navigate = useNavigate();
     return(
       //대문Navbar
       <Navbar bg="dark" data-bs-theme="dark">
@@ -23,6 +24,9 @@ function Card(props){
             <Nav.Link href="#home">NEW</Nav.Link>
             <Nav.Link href="#features">BEST30</Nav.Link>
             <Nav.Link href="#pricing">ABOUT</Nav.Link>
+            <button onClick={()=>{
+              navigate('/cart');
+            }}>Cart</button>
             <p>"     "</p>
             <Link to="/" style={{ textDecoration: "none", marginTop: '8px'}}>홈</Link>
             <p>"     "</p>

@@ -8,21 +8,30 @@ let cart = createSlice({
     {id : 2, name : 'Grey Yordan', count : 1}
   ],
   reducers : {
-    changeCount(state, action){
-      const product = state.find(state => state.id === action.payload)
-      if(product){
-        product.count++
-      }
+    addCount(state, action){
+      let 번호 = state.findIndex((item) => { return item.id === action.payload })
+      state[번호].count++
     },
     addProduct(state, action){
       state.push(action.payload)
     },
-    printProduct(state){
-      console.log(state[0]);
+    minusCount(state, action){
+      let 번호 = state.findIndex((item) => { return item.id === action.payload })
+      if(state[번호].count > 1){
+        state[번호].count--
+      }
+      else{
+        let item = state.filter((item) => { return item.id !== action.payload })
+        return item
+      }
+    },
+    removeProduct(state, action){
+      let item = state.filter((item) => { return item.id !== action.payload })
+      return item
     }
   }
 })
-export let { changeCount, addProduct, printProduct } = cart.actions
+export let { addCount, addProduct, minusCount, removeProduct } = cart.actions
 
 
 
