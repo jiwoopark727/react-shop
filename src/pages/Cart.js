@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { changeAge, changeName } from "./../store/userSlice.js"
 import { addCount, minusCount, removeProduct } from "./../store.js"
 
+
 function Cart(){
 
     let state = useSelector((state)=>{return state})

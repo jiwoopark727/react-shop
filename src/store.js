@@ -1,6 +1,7 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 import user from './store/userSlice.js'
 
+
 let cart = createSlice({
   name : 'cart',
   initialState : [
@@ -10,10 +11,15 @@ let cart = createSlice({
   reducers : {
     addCount(state, action){
       let 번호 = state.findIndex((item) => { return item.id === action.payload })
-      state[번호].count++
+      if(번호 !== -1){
+        state[번호].count++
+      }
     },
     addProduct(state, action){
-      state.push(action.payload)
+      let 번호 = state.findIndex((item) => { return item.id === action.payload.id })
+      if(번호 === -1){
+        state.push(action.payload)
+      }
     },
     minusCount(state, action){
       let 번호 = state.findIndex((item) => { return item.id === action.payload })
@@ -38,7 +44,7 @@ export let { addCount, addProduct, minusCount, removeProduct } = cart.actions
 
 export default configureStore({
   reducer: { 
-    user : user.reducer,
-    cart : cart.reducer
+    cart : cart.reducer,
+    user : user.reducer
   }
 }) 
