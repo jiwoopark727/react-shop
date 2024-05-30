@@ -1,5 +1,6 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 import user from './store/userSlice.js'
+import { withTheme } from 'styled-components'
 
 
 let cart = createSlice({
@@ -45,6 +46,6 @@ export let { addCount, addProduct, minusCount, removeProduct } = cart.actions
 export default configureStore({
   reducer: { 
     cart : cart.reducer,
-    user : user.reducer
+    user : user.reducer,
   }
 }) 

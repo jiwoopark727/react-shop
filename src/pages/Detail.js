@@ -13,6 +13,13 @@ function Detail(props){
     let result = props.shoes.find(function(item){
         return item.id == id;
     })
+
+    useEffect(()=>{
+        let watched = JSON.parse(localStorage.getItem('watched'))
+        watched.push(id)
+        localStorage.setItem('watched', JSON.stringify(watched))
+    },[id])
+    
     let [alert1, setAlert] = useState(true);
     let [num, setNum] = useState('');
     let [fade2, setFade2] = useState('');

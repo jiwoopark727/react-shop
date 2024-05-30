@@ -7,7 +7,7 @@ import axios from 'axios';
 import Cart from './pages/Cart.js';
 
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
 
@@ -17,6 +17,10 @@ function App() {
   let navigate = useNavigate();
   let [click, setClick] = useState(0);
   let [loading,setLoading] = useState(false);
+
+  useEffect(()=>{
+    localStorage.setItem('watched',JSON.stringify([]))
+  },[])
 
 
   return (
@@ -75,7 +79,7 @@ function App() {
         <Route path="/detail/:id" element={ 
           <div>
             {/* 상세 정보 */}
-            <Detail shoes={shoes}/>
+            <Detail shoes={shoes}/>          
           </div> 
         } />
 
