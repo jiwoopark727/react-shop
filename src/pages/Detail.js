@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
@@ -14,12 +15,17 @@ function Detail(props){
         return item.id == id;
     })
 
+    // result.id 는 숫자
+    // id 는 문자 취급 중
     useEffect(()=>{
-        let watched = JSON.parse(localStorage.getItem('watched'))
-        watched.push(id)
-        localStorage.setItem('watched', JSON.stringify(watched))
-    },[id])
-    
+        let 꺼낸거 = JSON.parse(localStorage.getItem('watched'))
+        if(!꺼낸거.includes(result.id)){
+            꺼낸거.push(result.id)
+            localStorage.setItem('watched', JSON.stringify(꺼낸거))
+        }
+
+    },[])
+
     let [alert1, setAlert] = useState(true);
     let [num, setNum] = useState('');
     let [fade2, setFade2] = useState('');

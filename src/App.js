@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {Front, Display} from './component.js';
 import data from './data.js';
 import Detail from './pages/Detail.js';
@@ -18,9 +19,13 @@ function App() {
   let [click, setClick] = useState(0);
   let [loading,setLoading] = useState(false);
 
-  useEffect(()=>{
-    localStorage.setItem('watched',JSON.stringify([]))
-  },[])
+
+  useEffect(() => {
+    if (!localStorage.getItem('watched')) {
+      localStorage.setItem('watched', JSON.stringify([]));
+    }
+  }, []);
+
 
 
   return (
