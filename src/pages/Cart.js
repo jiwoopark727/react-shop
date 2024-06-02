@@ -9,25 +9,25 @@ import { useState, memo } from "react"
 //     return <div>자식임</div>
 //   })
 
-function 함수(){
-    return 반복문10억번돌린결과
-}
+// function 함수(){
+//     return 반복문10억번돌린결과
+// }
 
 function Cart(){
 
     let state = useSelector((state)=>{return state})
     let dispatch = useDispatch()
 
-    let [count, setCount] = useState(0)
+    // let [count, setCount] = useState(0)
 
-    //useMemo 컴포넌트 렌더링시 1회만 실행해줌
-    let result = useMemo(()=>{ return 함수() }, [])
+    // //useMemo 컴포넌트 렌더링시 1회만 실행해줌
+    // let result = useMemo(()=>{ return 함수() }, [])
 
     return(
         <div>
 
-            <Child></Child>
-            <button onClick={()=>{ setCount(count+1) }}> + </button>
+            {/* <Child></Child>
+            <button onClick={()=>{ setCount(count+1) }}> + </button> */}
 
             <h5>{state.user.name}의 장바구니 {state.user.age}살</h5>
             <button onClick={()=>{

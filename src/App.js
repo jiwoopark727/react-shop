@@ -17,6 +17,33 @@ const Detail = lazy(()=> import('./pages/Detail.js'))
 
 import './App.css';
 
+// useTransition 으로 감싼건 나중에 처리해줌
+// ex)input 타이핑처럼 즉각해줄거 해주고 그리고 state 변경함수를 처리해줌 -> setName을 startTransitoin으로 감싸서~
+// useDeferredValue도 비슷함 그 안에 state를 집어 넣으면 그 state가 변동사항이 생겼을 때 나중에 처리해줌
+// import {useState, useTransition} from 'react'
+
+// let a = new Array(10000).fill(0)
+
+// function App(){
+//   let [name, setName] = useState('')
+//   let [isPending, startTransition] = useTransition()
+  
+//   return (
+//     <div>
+//       <input onChange={ (e)=>{ 
+//         startTransition(()=>{
+//           setName(e.target.value) 
+//         })
+//       }}/>
+
+//       {
+//         a.map(()=>{
+//           return <div>{name}</div>
+//         })
+//       }
+//     </div>
+//   )
+// }
 
 function App() {
 
