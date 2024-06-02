@@ -4,10 +4,14 @@ import { changeAge, changeName } from "./../store/userSlice.js"
 import { addCount, minusCount, removeProduct } from "./../store.js"
 import { useState, memo } from "react"
 
-let Child = memo(function(){
-    console.log('재렌더링됨')
-    return <div>자식임</div>
-  })
+// let Child = memo(function(){
+//     console.log('재렌더링됨')
+//     return <div>자식임</div>
+//   })
+
+function 함수(){
+    return 반복문10억번돌린결과
+}
 
 function Cart(){
 
@@ -15,6 +19,9 @@ function Cart(){
     let dispatch = useDispatch()
 
     let [count, setCount] = useState(0)
+
+    //useMemo 컴포넌트 렌더링시 1회만 실행해줌
+    let result = useMemo(()=>{ return 함수() }, [])
 
     return(
         <div>
